@@ -10,7 +10,10 @@ namespace MoviesApp.Models
         public int ID { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public DateTime ReleaseDate{ get; set; }
+        public string ReleaseDate{ get; set; }
+        
+        public virtual Tag Tag { get; set; }
+        public ICollection<Review> Reviews { get; set; }
 
     }
 }

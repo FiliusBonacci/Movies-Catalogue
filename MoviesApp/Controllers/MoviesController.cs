@@ -11,7 +11,10 @@ namespace MoviesApp.Controllers
     {
         public static List<Movie> _movies = new List<Movie>
         {
-            new Movie{ID = 1, Title = "Pierwszy", Description="lorem ipsum", ReleaseDate = DateTime.Today}
+            new Movie{ID = 1, Title = "Pierwszy", Description="lorem ipsum", ReleaseDate = DateTime.Today.Year.ToString()},
+            new Movie{ID = 2, Title = "Drugi Film", Description="lorem ipsumf sdf sdf ", ReleaseDate = DateTime.Today.Year.ToString()},
+            new Movie{ID = 3, Title = "Trzeci film", Description="lorem ipsum sdf sdf", ReleaseDate = DateTime.Today.Year.ToString()},
+            new Movie{ID = 4, Title = "Ostatni", Description="lorem ipsum asdasdas sff ", ReleaseDate = DateTime.Today.Year.ToString()},
         };
         // GET: Movies
         public ActionResult Index()
@@ -56,6 +59,11 @@ namespace MoviesApp.Controllers
         }
 
 
-      
+        [ChildActionOnly]
+        public ActionResult BestMovie()
+        {
+            var model = _movies.First();
+            return PartialView("_SingleMovie", model);
+        }
     }
 }
