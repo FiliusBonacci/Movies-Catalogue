@@ -1,7 +1,7 @@
 ﻿namespace MoviesApp.Models
 {
-    public class Tag
+    public class Tag : IEntity
     {
-        
+        public string Name { get; set; }
     }
 }

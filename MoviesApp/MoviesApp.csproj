@@ -157,11 +157,22 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
+    <Compile Include="Controllers\TagsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801031127505_MoviesAppInitial.cs" />
+    <Compile Include="Migrations\201801031127505_MoviesAppInitial.Designer.cs">
+      <DependentUpon>201801031127505_MoviesAppInitial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801031959192_Tagschanges.cs" />
+    <Compile Include="Migrations\201801031959192_Tagschanges.Designer.cs">
+      <DependentUpon>201801031959192_Tagschanges.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\IEntity.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\Review.cs" />
     <Compile Include="Models\Tag.cs" />
@@ -170,6 +181,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="extras.txt" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -191,8 +203,11 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Views\Movies\Edit.cshtml" />
+    <Content Include="Views\Movies\Search.cshtml" />
     <Content Include="Views\Movies\_MoviesListTable.cshtml" />
     <Content Include="Views\Movies\_SingleMovie.cshtml" />
+    <None Include="Views\Tags\Search.cshtml" />
+    <Content Include="Views\Tags\Index.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -211,6 +226,8 @@
     <Content Include="Views\Movies\Create.cshtml" />
     <Content Include="Views\Movies\Details.cshtml" />
     <Content Include="Views\Movies\Delete.cshtml" />
+    <Content Include="Views\Tags\_ViewStart.cshtml" />
+    <Content Include="Views\Tags\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -228,6 +245,14 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201801031127505_MoviesAppInitial.resx">
+      <DependentUpon>201801031127505_MoviesAppInitial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801031959192_Tagschanges.resx">
+      <DependentUpon>201801031959192_Tagschanges.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

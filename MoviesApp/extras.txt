@@ -1,0 +1,8 @@
+﻿-- powrót migracji (wyczyszczenie tabel)
+Update-Database -TargetMigration $InitialDatabase
+
+-- dodawanie migracji
+Add-Migration MoviesAppInitial
+
+-- włączanie migracji
+Enable-Migrations

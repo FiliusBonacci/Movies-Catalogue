@@ -7,28 +7,40 @@ using MoviesApp.Models;
 
 namespace MoviesApp.Controllers
 {
-    public class MoviesController : Controller
+    public class MoviesController : BaseController
     {
         public static List<Movie> _movies = new List<Movie>
-        {
-            new Movie{ID = 1, Title = "Pierwszy", Description="lorem ipsum", ReleaseDate = DateTime.Today.Year.ToString()},
-            new Movie{ID = 2, Title = "Drugi Film", Description="lorem ipsumf sdf sdf ", ReleaseDate = DateTime.Today.Year.ToString()},
-            new Movie{ID = 3, Title = "Trzeci film", Description="lorem ipsum sdf sdf", ReleaseDate = DateTime.Today.Year.ToString()},
-            new Movie{ID = 4, Title = "Ostatni", Description="lorem ipsum asdasdas sff ", ReleaseDate = DateTime.Today.Year.ToString()},
-        };
+         {
+            new Movie{ID = 1, Title = "Pierwszy", Description="lorem ipsum", ReleaseDate = DateTime.Today.Year.ToString()}
+         };
+
         // GET: Movies
         public ActionResult Index()
         {
-            var model = _movies;
+
+            var model = _db.Movies;
+                        
             return View(model);
         }
 
-        
-        
+        public ActionResult Search(string search = null)
+        {
+            IEnumerable<Movie> model;
+            if (!string.IsNullOrEmpty(search))
+            {
+                model = _db.Movies.Where(m => m.Title.Contains(search));
+            } else
+            {
+                model = _db.Movies;
+            }
+            
+            return View(model);
+        }
+
         public ActionResult Details(int id)
         {
-            var movie = _movies.Single(m => m.ID == id);
-            return View(movie);
+            var movie = _db.Movies.Where(m => m.ID.Equals(id));
+            return View((Movie) movie);
         }
          
 
@@ -39,18 +51,22 @@ namespace MoviesApp.Controllers
         
         public ActionResult Edit(int id)
         {
-            var movie = _movies.Single(m => m.ID == id);
-            return View(movie);
+            var movie = from m in _db.Movies
+                        where m.ID == id
+                        select m;
+            return View((Movie) movie);
         }
         [HttpPost]
         public ActionResult Edit(int id, Movie movies)
         {
-            var movie = _movies.Single(m => m.ID == id);
+            var movie = from m in _db.Movies
+                        where m.ID == id
+                        select m;
             if (TryUpdateModel(movie))
             {
                 return RedirectToAction("Index");
             }
-            return View(movie);
+            return View((Movie) movie);
         }
         
         public ActionResult Delete(int id)
@@ -63,7 +79,7 @@ namespace MoviesApp.Controllers
         public ActionResult BestMovie()
         {
             var model = _movies.First();
-            return PartialView("_SingleMovie", model);
+            return PartialView("_SingleMovie", (Movie) model);
         }
     }
 }

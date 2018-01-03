@@ -10,8 +10,8 @@ namespace MoviesApp.Controllers
     {
         public ActionResult Index()
         {
-            var model = _db.Tags.ToList();
-            return View(model);
+            var tags = _db.Tags.ToList();
+            return View(tags);
         }
 
         public ActionResult About()

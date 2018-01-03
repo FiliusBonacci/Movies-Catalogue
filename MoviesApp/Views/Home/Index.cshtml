@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<MoviesApp.Models.Tag>
+
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -9,5 +11,9 @@
 </div>
 
 <div class="row">
-   
+    <h2>Przeglądaj po tagach</h2>
+    @foreach(var tag in Model)
+    {
+        <h4>@tag.Name</h4>
+    }
 </div>
