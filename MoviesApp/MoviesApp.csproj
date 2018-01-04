@@ -157,7 +157,6 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
-    <Compile Include="Controllers\TagsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -168,6 +167,10 @@
     <Compile Include="Migrations\201801031959192_Tagschanges.cs" />
     <Compile Include="Migrations\201801031959192_Tagschanges.Designer.cs">
       <DependentUpon>201801031959192_Tagschanges.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801041810105_MoviesCreation.cs" />
+    <Compile Include="Migrations\201801041810105_MoviesCreation.Designer.cs">
+      <DependentUpon>201801041810105_MoviesCreation.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -202,12 +205,6 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Views\Movies\Edit.cshtml" />
-    <Content Include="Views\Movies\Search.cshtml" />
-    <Content Include="Views\Movies\_MoviesListTable.cshtml" />
-    <Content Include="Views\Movies\_SingleMovie.cshtml" />
-    <None Include="Views\Tags\Search.cshtml" />
-    <Content Include="Views\Tags\Index.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -222,12 +219,11 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Movies\Index.cshtml" />
     <Content Include="Views\Movies\Create.cshtml" />
-    <Content Include="Views\Movies\Details.cshtml" />
     <Content Include="Views\Movies\Delete.cshtml" />
-    <Content Include="Views\Tags\_ViewStart.cshtml" />
-    <Content Include="Views\Tags\_Layout.cshtml" />
+    <Content Include="Views\Movies\Details.cshtml" />
+    <Content Include="Views\Movies\Edit.cshtml" />
+    <Content Include="Views\Movies\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -252,6 +248,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801031959192_Tagschanges.resx">
       <DependentUpon>201801031959192_Tagschanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801041810105_MoviesCreation.resx">
+      <DependentUpon>201801041810105_MoviesCreation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

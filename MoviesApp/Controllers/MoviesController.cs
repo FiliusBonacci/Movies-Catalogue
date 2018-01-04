@@ -1,85 +1,127 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MoviesApp.Models;
 
 namespace MoviesApp.Controllers
 {
-    public class MoviesController : BaseController
+    public class MoviesController : Controller
     {
-        public static List<Movie> _movies = new List<Movie>
-         {
-            new Movie{ID = 1, Title = "Pierwszy", Description="lorem ipsum", ReleaseDate = DateTime.Today.Year.ToString()}
-         };
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Movies
         public ActionResult Index()
         {
-
-            var model = _db.Movies;
-                        
-            return View(model);
+            return View(db.Movies.ToList());
         }
 
-        public ActionResult Search(string search = null)
+        // GET: Movies/Details/5
+        public ActionResult Details(int? id)
         {
-            IEnumerable<Movie> model;
-            if (!string.IsNullOrEmpty(search))
+            if (id == null)
             {
-                model = _db.Movies.Where(m => m.Title.Contains(search));
-            } else
-            {
-                model = _db.Movies;
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            
-            return View(model);
+            Movie movie = db.Movies.Find(id);
+            if (movie == null)
+            {
+                return HttpNotFound();
+            }
+            return View(movie);
         }
 
-        public ActionResult Details(int id)
-        {
-            var movie = _db.Movies.Where(m => m.ID.Equals(id));
-            return View((Movie) movie);
-        }
-         
-
+        // GET: Movies/Create
         public ActionResult Create()
         {
             return View();
         }
-        
-        public ActionResult Edit(int id)
-        {
-            var movie = from m in _db.Movies
-                        where m.ID == id
-                        select m;
-            return View((Movie) movie);
-        }
+
+        // POST: Movies/Create
+        // Aby zapewnić ochronę przed atakami polegającymi na przesyłaniu dodatkowych danych, włącz określone właściwości, z którymi chcesz utworzyć powiązania.
+        // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        public ActionResult Edit(int id, Movie movies)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "ID,Title,Description,ReleaseDate")] Movie movie)
         {
-            var movie = from m in _db.Movies
-                        where m.ID == id
-                        select m;
-            if (TryUpdateModel(movie))
+            if (ModelState.IsValid)
             {
+                db.Movies.Add(movie);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View((Movie) movie);
-        }
-        
-        public ActionResult Delete(int id)
-        {
-            return View();
+
+            return View(movie);
         }
 
-
-        [ChildActionOnly]
-        public ActionResult BestMovie()
+        // GET: Movies/Edit/5
+        public ActionResult Edit(int? id)
         {
-            var model = _movies.First();
-            return PartialView("_SingleMovie", (Movie) model);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Movie movie = db.Movies.Find(id);
+            if (movie == null)
+            {
+                return HttpNotFound();
+            }
+            return View(movie);
+        }
+
+        // POST: Movies/Edit/5
+        // Aby zapewnić ochronę przed atakami polegającymi na przesyłaniu dodatkowych danych, włącz określone właściwości, z którymi chcesz utworzyć powiązania.
+        // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "ID,Title,Description,ReleaseDate")] Movie movie)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(movie).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(movie);
+        }
+
+        // GET: Movies/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Movie movie = db.Movies.Find(id);
+            if (movie == null)
+            {
+                return HttpNotFound();
+            }
+            return View(movie);
+        }
+
+        // POST: Movies/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Movie movie = db.Movies.Find(id);
+            db.Movies.Remove(movie);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }
