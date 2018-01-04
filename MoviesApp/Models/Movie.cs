@@ -10,7 +10,7 @@ namespace MoviesApp.Models
     {
         //public int ID { get; set; }
         [Required]
-        [MaxLength(100)]
+        [MaxLength(100, ErrorMessage = "Długość nie może być większa niż 100 znaków.")]
         public string Title { get; set; }
         public string Description { get; set; }
         public string ReleaseDate{ get; set; }
