@@ -155,8 +155,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
+    <Compile Include="Controllers\ReviewsController.cs" />
     <Compile Include="Controllers\TagsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -177,8 +179,21 @@
     <Compile Include="Migrations\201801041833232_settingUpModels.Designer.cs">
       <DependentUpon>201801041833232_settingUpModels.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801041916010_ReviewChange.cs" />
+    <Compile Include="Migrations\201801041916010_ReviewChange.Designer.cs">
+      <DependentUpon>201801041916010_ReviewChange.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801042052126_reviewChanges.cs" />
+    <Compile Include="Migrations\201801042052126_reviewChanges.Designer.cs">
+      <DependentUpon>201801042052126_reviewChanges.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801061228474_Category.cs" />
+    <Compile Include="Migrations\201801061228474_Category.Designer.cs">
+      <DependentUpon>201801061228474_Category.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
+    <Compile Include="Models\Category.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\IEntity.cs" />
     <Compile Include="Models\Movie.cs" />
@@ -234,6 +249,17 @@
     <Content Include="Views\Tags\Details.cshtml" />
     <Content Include="Views\Tags\Edit.cshtml" />
     <Content Include="Views\Tags\Index.cshtml" />
+    <Content Include="Views\Reviews\Create.cshtml" />
+    <Content Include="Views\Reviews\Delete.cshtml" />
+    <Content Include="Views\Reviews\Details.cshtml" />
+    <Content Include="Views\Reviews\Edit.cshtml" />
+    <Content Include="Views\Reviews\Index.cshtml" />
+    <Content Include="Views\Reviews\_Reviews.cshtml" />
+    <Content Include="Views\Categories\Create.cshtml" />
+    <Content Include="Views\Categories\Delete.cshtml" />
+    <Content Include="Views\Categories\Details.cshtml" />
+    <Content Include="Views\Categories\Edit.cshtml" />
+    <Content Include="Views\Categories\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -264,6 +290,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801041833232_settingUpModels.resx">
       <DependentUpon>201801041833232_settingUpModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801041916010_ReviewChange.resx">
+      <DependentUpon>201801041916010_ReviewChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801042052126_reviewChanges.resx">
+      <DependentUpon>201801042052126_reviewChanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801061228474_Category.resx">
+      <DependentUpon>201801061228474_Category.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

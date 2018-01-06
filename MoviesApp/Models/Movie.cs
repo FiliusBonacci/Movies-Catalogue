@@ -14,9 +14,11 @@ namespace MoviesApp.Models
         public string Title { get; set; }
         public string Description { get; set; }
         public string ReleaseDate{ get; set; }
+
+        public int CategoryId { get; set; }
         
-        public ICollection<Tag> Tags { get; set; }
-        public ICollection<Review> Reviews { get; set; }
+        public virtual Category Category { get; set; }
+        public virtual ICollection<Review> Reviews { get; set; }
 
     }
 }

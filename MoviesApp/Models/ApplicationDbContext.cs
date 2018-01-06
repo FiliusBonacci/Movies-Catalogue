@@ -22,5 +22,7 @@ namespace MoviesApp.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<MoviesApp.Models.Category> Categories { get; set; }
     }
 }
