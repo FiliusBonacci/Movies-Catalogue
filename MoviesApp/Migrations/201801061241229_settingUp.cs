@@ -3,7 +3,7 @@ namespace MoviesApp.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Category : DbMigration
+    public partial class settingUp : DbMigration
     {
         public override void Up()
         {
@@ -15,17 +15,17 @@ namespace MoviesApp.Migrations
                 "dbo.Categories",
                 c => new
                     {
-                        ID = c.Int(nullable: false, identity: true),
+                        Id = c.Int(nullable: false, identity: true),
                         Name = c.String(),
                     })
-                .PrimaryKey(t => t.ID);
+                .PrimaryKey(t => t.Id);
             
             AddColumn("dbo.Movies", "CategoryId", c => c.Int(nullable: false));
-            AddColumn("dbo.Movies", "Tag_ID", c => c.Int());
+            AddColumn("dbo.Movies", "Tag_Id", c => c.Int());
             CreateIndex("dbo.Movies", "CategoryId");
-            CreateIndex("dbo.Movies", "Tag_ID");
-            AddForeignKey("dbo.Movies", "CategoryId", "dbo.Categories", "ID", cascadeDelete: true);
-            AddForeignKey("dbo.Movies", "Tag_ID", "dbo.Tags", "ID");
+            CreateIndex("dbo.Movies", "Tag_Id");
+            AddForeignKey("dbo.Movies", "CategoryId", "dbo.Categories", "Id", cascadeDelete: true);
+            AddForeignKey("dbo.Movies", "Tag_Id", "dbo.Tags", "Id");
             DropTable("dbo.TagMovies");
         }
         
@@ -40,11 +40,11 @@ namespace MoviesApp.Migrations
                     })
                 .PrimaryKey(t => new { t.Tag_ID, t.Movie_ID });
             
-            DropForeignKey("dbo.Movies", "Tag_ID", "dbo.Tags");
+            DropForeignKey("dbo.Movies", "Tag_Id", "dbo.Tags");
             DropForeignKey("dbo.Movies", "CategoryId", "dbo.Categories");
-            DropIndex("dbo.Movies", new[] { "Tag_ID" });
+            DropIndex("dbo.Movies", new[] { "Tag_Id" });
             DropIndex("dbo.Movies", new[] { "CategoryId" });
-            DropColumn("dbo.Movies", "Tag_ID");
+            DropColumn("dbo.Movies", "Tag_Id");
             DropColumn("dbo.Movies", "CategoryId");
             DropTable("dbo.Categories");
             CreateIndex("dbo.TagMovies", "Movie_ID");

@@ -7,13 +7,13 @@ namespace MoviesApp.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class Tagschanges : IMigrationMetadata
+    public sealed partial class settingUp : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Tagschanges));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(settingUp));
         
         string IMigrationMetadata.Id
         {
-            get { return "201801031959192_Tagschanges"; }
+            get { return "201801061241229_settingUp"; }
         }
         
         string IMigrationMetadata.Source

@@ -3,22 +3,34 @@ namespace MoviesApp.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class MoviesAppInitial : DbMigration
+    public partial class Initial : DbMigration
     {
         public override void Up()
         {
+            CreateTable(
+                "dbo.Categories",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
+                    })
+                .PrimaryKey(t => t.ID);
+            
             CreateTable(
                 "dbo.Movies",
                 c => new
                     {
                         ID = c.Int(nullable: false, identity: true),
-                        Title = c.String(),
+                        Title = c.String(nullable: false, maxLength: 100),
                         Description = c.String(),
                         ReleaseDate = c.String(),
+                        CategoryId = c.Int(nullable: false),
                         Tag_ID = c.Int(),
                     })
                 .PrimaryKey(t => t.ID)
+                .ForeignKey("dbo.Categories", t => t.CategoryId, cascadeDelete: true)
                 .ForeignKey("dbo.Tags", t => t.Tag_ID)
+                .Index(t => t.CategoryId)
                 .Index(t => t.Tag_ID);
             
             CreateTable(
@@ -28,20 +40,11 @@ namespace MoviesApp.Migrations
                         ID = c.Int(nullable: false, identity: true),
                         Comment = c.String(),
                         Grade = c.Int(nullable: false),
-                        Movie_ID = c.Int(),
+                        MovieId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.Movies", t => t.Movie_ID)
-                .Index(t => t.Movie_ID);
-            
-            CreateTable(
-                "dbo.Tags",
-                c => new
-                    {
-                        ID = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
-                    })
-                .PrimaryKey(t => t.ID);
+                .ForeignKey("dbo.Movies", t => t.MovieId, cascadeDelete: true)
+                .Index(t => t.MovieId);
             
             CreateTable(
                 "dbo.AspNetRoles",
@@ -65,6 +68,15 @@ namespace MoviesApp.Migrations
                 .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
                 .Index(t => t.UserId)
                 .Index(t => t.RoleId);
+            
+            CreateTable(
+                "dbo.Tags",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
+                    })
+                .PrimaryKey(t => t.ID);
             
             CreateTable(
                 "dbo.AspNetUsers",
@@ -118,25 +130,28 @@ namespace MoviesApp.Migrations
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
-            DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
             DropForeignKey("dbo.Movies", "Tag_ID", "dbo.Tags");
-            DropForeignKey("dbo.Reviews", "Movie_ID", "dbo.Movies");
+            DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
+            DropForeignKey("dbo.Reviews", "MovieId", "dbo.Movies");
+            DropForeignKey("dbo.Movies", "CategoryId", "dbo.Categories");
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
-            DropIndex("dbo.Reviews", new[] { "Movie_ID" });
+            DropIndex("dbo.Reviews", new[] { "MovieId" });
             DropIndex("dbo.Movies", new[] { "Tag_ID" });
+            DropIndex("dbo.Movies", new[] { "CategoryId" });
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
+            DropTable("dbo.Tags");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
-            DropTable("dbo.Tags");
             DropTable("dbo.Reviews");
             DropTable("dbo.Movies");
+            DropTable("dbo.Categories");
         }
     }
 }

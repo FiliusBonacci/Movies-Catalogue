@@ -163,33 +163,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201801031127505_MoviesAppInitial.cs" />
-    <Compile Include="Migrations\201801031127505_MoviesAppInitial.Designer.cs">
-      <DependentUpon>201801031127505_MoviesAppInitial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801031959192_Tagschanges.cs" />
-    <Compile Include="Migrations\201801031959192_Tagschanges.Designer.cs">
-      <DependentUpon>201801031959192_Tagschanges.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801041810105_MoviesCreation.cs" />
-    <Compile Include="Migrations\201801041810105_MoviesCreation.Designer.cs">
-      <DependentUpon>201801041810105_MoviesCreation.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801041833232_settingUpModels.cs" />
-    <Compile Include="Migrations\201801041833232_settingUpModels.Designer.cs">
-      <DependentUpon>201801041833232_settingUpModels.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801041916010_ReviewChange.cs" />
-    <Compile Include="Migrations\201801041916010_ReviewChange.Designer.cs">
-      <DependentUpon>201801041916010_ReviewChange.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801042052126_reviewChanges.cs" />
-    <Compile Include="Migrations\201801042052126_reviewChanges.Designer.cs">
-      <DependentUpon>201801042052126_reviewChanges.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801061228474_Category.cs" />
-    <Compile Include="Migrations\201801061228474_Category.Designer.cs">
-      <DependentUpon>201801061228474_Category.cs</DependentUpon>
+    <Compile Include="Migrations\201801061253470_Initial.cs" />
+    <Compile Include="Migrations\201801061253470_Initial.Designer.cs">
+      <DependentUpon>201801061253470_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -279,26 +255,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201801031127505_MoviesAppInitial.resx">
-      <DependentUpon>201801031127505_MoviesAppInitial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801031959192_Tagschanges.resx">
-      <DependentUpon>201801031959192_Tagschanges.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801041810105_MoviesCreation.resx">
-      <DependentUpon>201801041810105_MoviesCreation.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801041833232_settingUpModels.resx">
-      <DependentUpon>201801041833232_settingUpModels.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801041916010_ReviewChange.resx">
-      <DependentUpon>201801041916010_ReviewChange.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801042052126_reviewChanges.resx">
-      <DependentUpon>201801042052126_reviewChanges.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801061228474_Category.resx">
-      <DependentUpon>201801061228474_Category.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201801061253470_Initial.resx">
+      <DependentUpon>201801061253470_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

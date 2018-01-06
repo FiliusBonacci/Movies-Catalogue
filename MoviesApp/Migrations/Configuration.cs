@@ -1,6 +1,5 @@
 namespace MoviesApp.Migrations
 {
-    using MoviesApp.Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -10,12 +9,11 @@ namespace MoviesApp.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(MoviesApp.Models.ApplicationDbContext context)
         {
-            context.Tags.AddOrUpdate(t => t.Name, new Tag { Name = "Filmy sensacyjne" }, new Tag { Name = "Dramaty" });
             //  This method will be called after migrating to the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
