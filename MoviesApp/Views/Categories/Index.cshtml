@@ -1,5 +1,10 @@
 ﻿@model IEnumerable<MoviesApp.Models.Category>
 
+@{
+    ViewBag.Title = "Lista kategorii";
+}
+
+<h2>Lista kategorii: </h2>
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -14,12 +19,13 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Name)
+            @Html.DisplayFor(modelItem => item.Name) @*(Filmów: @item.Movies.Count() )*@
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id }) |
+            @Html.ActionLink("Movies", "Index", "Movies", new { categoryId=item.Id }, new {@class="btn btn-success"}) 
         </td>
     </tr>
 }

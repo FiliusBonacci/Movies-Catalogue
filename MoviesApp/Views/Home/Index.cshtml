@@ -1,4 +1,5 @@
-﻿@model IEnumerable<MoviesApp.Models.Tag>
+﻿@using MoviesApp.Models
+@model IEnumerable<MoviesApp.Models.Category>
 
 @{
     ViewBag.Title = "Home Page";
@@ -7,13 +8,22 @@
 <div class="jumbotron">
     <h1>Katalog filmów</h1>
     <p class="lead">Strona zawiera katalog filmów wraz z ocenami i opisem.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Przeglądaj filmy</a></p>
+    <p>
+        @Html.ActionLink("Przeglądaj filmy", "Index","Movies", null, new {@class="btn btn-primary btn-lg"})
+    </p>
+   
 </div>
 
 <div class="row">
-    <h2>Przeglądaj po tagach</h2>
-    @foreach(var tag in Model)
+    <h2>Przeglądaj po kategoriach</h2>
+    @foreach(var category in Model)
     {
-        <h4>@tag.Name</h4>
+        <div class="col-md-3 panel">
+            <h4>@category.Name</h4>
+            @foreach (var movie in category.Movies)
+             {
+                <li> @movie.Title</li>      
+             }   
+        </div>
     }
 </div>

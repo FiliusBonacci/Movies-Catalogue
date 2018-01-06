@@ -171,6 +171,10 @@
     <Compile Include="Migrations\201801061605442_changeIDToId.Designer.cs">
       <DependentUpon>201801061605442_changeIDToId.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801061659166_CategoryMoviesFix.cs" />
+    <Compile Include="Migrations\201801061659166_CategoryMoviesFix.Designer.cs">
+      <DependentUpon>201801061659166_CategoryMoviesFix.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Category.cs" />
@@ -265,6 +269,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801061605442_changeIDToId.resx">
       <DependentUpon>201801061605442_changeIDToId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801061659166_CategoryMoviesFix.resx">
+      <DependentUpon>201801061659166_CategoryMoviesFix.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
