@@ -1,16 +1,18 @@
 ﻿@model MoviesApp.Models.Movie
 
-@{
-    ViewBag.Title = "Delete";
-}
-
-<h2>Delete</h2>
-
 <h3>Are you sure you want to delete this?</h3>
 <div>
     <h4>Movie</h4>
     <hr />
     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Category.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category.Name)
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.Title)
         </dt>

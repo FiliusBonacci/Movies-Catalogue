@@ -167,6 +167,10 @@
     <Compile Include="Migrations\201801061253470_Initial.Designer.cs">
       <DependentUpon>201801061253470_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801061605442_changeIDToId.cs" />
+    <Compile Include="Migrations\201801061605442_changeIDToId.Designer.cs">
+      <DependentUpon>201801061605442_changeIDToId.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Category.cs" />
@@ -176,6 +180,7 @@
     <Compile Include="Models\Review.cs" />
     <Compile Include="Models\Tag.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\CreateMovieViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -257,6 +262,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201801061253470_Initial.resx">
       <DependentUpon>201801061253470_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801061605442_changeIDToId.resx">
+      <DependentUpon>201801061605442_changeIDToId.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

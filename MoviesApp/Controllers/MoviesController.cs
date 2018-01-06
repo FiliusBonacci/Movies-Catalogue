@@ -7,17 +7,31 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MoviesApp.Models;
+using MoviesApp.ViewModels;
 
 namespace MoviesApp.Controllers
 {
-    public class MoviesController : Controller
+    public class MoviesController : BaseController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Movies
-        public ActionResult Index()
+        public ActionResult Index(int? categoryId = null)
         {
-            return View(db.Movies.ToList());
+            IEnumerable<Movie> movies;
+            
+            if (categoryId.HasValue)
+            {
+                if (_db.Categories.Any(c => c.Id == categoryId.Value))
+                {
+                    movies = _db.Movies.Where(p => p.CategoryId == categoryId.Value);    
+                    return View(movies);
+                }
+                
+            }
+
+            movies = _db.Movies;
+            return View(movies);
         }
 
         // GET: Movies/Details/5
@@ -27,7 +41,7 @@ namespace MoviesApp.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Movie movie = db.Movies.Find(id);
+            Movie movie = _db.Movies.Find(id);
             if (movie == null)
             {
                 return HttpNotFound();
@@ -38,7 +52,9 @@ namespace MoviesApp.Controllers
         // GET: Movies/Create
         public ActionResult Create()
         {
-            return View();
+            var model = new CreateMovieViewModel();
+            model.Categories = _db.Categories.Select(c => new SelectListItem {Text = c.Name, Value = c.Id.ToString()});
+            return View(model);
         }
 
         // POST: Movies/Create
@@ -82,8 +98,8 @@ namespace MoviesApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(movie).State = EntityState.Modified;
-                db.SaveChanges();
+                _db.Entry(movie).State = EntityState.Modified;
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(movie);
@@ -96,7 +112,7 @@ namespace MoviesApp.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Movie movie = db.Movies.Find(id);
+            Movie movie = _db.Movies.Find(id);
             if (movie == null)
             {
                 return HttpNotFound();
@@ -109,9 +125,9 @@ namespace MoviesApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Movie movie = db.Movies.Find(id);
-            db.Movies.Remove(movie);
-            db.SaveChanges();
+            Movie movie = _db.Movies.Find(id);
+            _db.Movies.Remove(movie);
+            _db.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -119,7 +135,7 @@ namespace MoviesApp.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
         }
