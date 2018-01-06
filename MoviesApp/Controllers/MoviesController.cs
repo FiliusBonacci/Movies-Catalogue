@@ -62,7 +62,7 @@ namespace MoviesApp.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Title,Description,ReleaseDate")] Movie movie)
+        public ActionResult Create([Bind(Include = "ID,Title,Description,ReleaseDate, CategoryId")] Movie movie)
         {
             if (ModelState.IsValid)
             {
@@ -71,7 +71,8 @@ namespace MoviesApp.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View(movie);
+            return RedirectToAction("Create");
+//            return View(movie);
         }
 
         // GET: Movies/Edit/5
